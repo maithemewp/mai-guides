@@ -3,7 +3,7 @@
 /**
  * Plugin Name:     Mai Guides
  * Plugin URI:      https://maitheme.com
- * Description:     Create SEO friendly guide posts that feature an ordered list of hand-picked posts.
+ * Description:     Create SEO friendly guide posts that feature an ordered list of hand-picked posts. Requires ACF Pro for relationships.
  * Version:         0.1.0
  *
  * Author:          BizBudding, Mike Hemberger
@@ -130,6 +130,8 @@ final class Mai_Guides {
 	private function includes() {
 		// Include vendor libraries.
 		require_once __DIR__ . '/vendor/autoload.php';
+		// Classes.
+		foreach ( glob( MAI_GUIDES_PLUGIN_DIR . 'classes/*.php' ) as $file ) { include $file; }
 		// Includes.
 		foreach ( glob( MAI_GUIDES_INCLUDES_DIR . '*.php' ) as $file ) { include $file; }
 	}
@@ -142,11 +144,13 @@ final class Mai_Guides {
 	 */
 	public function hooks() {
 
-		add_action( 'admin_init', array( $this, 'updater' ) );
-		add_action( 'init',       array( $this, 'register_content_types' ) );
+		add_action( 'admin_init',             array( $this, 'updater' ) );
+		add_action( 'init',                   array( $this, 'register_content_types' ) );
+		add_filter( 'acf/settings/load_json', array( $this, 'load_json' ) );
 
 		register_activation_hook( __FILE__, array( $this, 'activate' ) );
 		register_deactivation_hook( __FILE__, 'flush_rewrite_rules' );
+
 	}
 
 	/**
@@ -156,6 +160,7 @@ final class Mai_Guides {
 	 *
 	 * @uses    https://github.com/YahnisElsts/plugin-update-checker/
 	 *
+	 * @since   0.1.0
 	 * @return  void
 	 */
 	public function updater() {
@@ -177,12 +182,13 @@ final class Mai_Guides {
 	/**
 	 * Register content types.
 	 *
+	 * @since   0.1.0
 	 * @return  void
 	 */
 	public function register_content_types() {
 
 		// Guides.
-		register_post_type( 'guide', apply_filters( 'mai_guide_args', array(
+		register_post_type( 'mai_guide', apply_filters( 'mai_guide_args', array(
 			'exclude_from_search' => false,
 			'has_archive'         => true,
 			'hierarchical'        => true,
@@ -212,6 +218,18 @@ final class Mai_Guides {
 			'supports'           => array( 'title', 'editor', 'author', 'thumbnail', 'genesis-cpt-archives-settings', 'genesis-adjacent-entry-nav' ),
 		) ) );
 
+	}
+
+	/**
+	 * Add path to load acf json files.
+	 *
+	 * @since   0.1.0
+	 * @param   array  The existing acf-json paths.
+	 * @return  array  The modified paths.
+	 */
+	function load_json( $paths ) {
+		$paths[] = untrailingslashit( MAI_GUIDES_PLUGIN_DIR ) . '/acf-json';
+		return $paths;
 	}
 
 	/**
