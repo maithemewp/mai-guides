@@ -1,18 +1,18 @@
 <?php
 
 /**
- * Adds Mai_Guides_Widget widget.
+ * Adds Mai_Guide_Content_Widget widget.
  */
-class Mai_Guides_Widget extends WP_Widget {
+class Mai_Guide_Content_Widget extends WP_Widget {
 
 	/**
 	 * Register widget with WordPress.
 	 */
 	public function __construct() {
 		parent::__construct(
-	 		'mai_guides', // Base ID.
-			__( 'Mai Guides', 'mai-guides' ), // Name.
-			array( 'description' => __( 'Show guide list.', 'mai-guides' ), ) // Args.
+	 		'mai_guide_content', // Base ID.
+			__( 'Guide Content', 'mai-guides' ), // Name.
+			array( 'description' => __( 'Show guide content on any guides or posts that are in a guide.', 'mai-guides' ), ) // Args.
 		);
 	}
 
@@ -86,5 +86,5 @@ class Mai_Guides_Widget extends WP_Widget {
 
 // Register our new widget.
 add_action( 'widgets_init', function() {
-	register_widget( 'Mai_Guides_Widget' );
+	register_widget( 'Mai_Guide_Content_Widget' );
 });
