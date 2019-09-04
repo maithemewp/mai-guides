@@ -188,7 +188,7 @@ final class Mai_Guides {
 	public function register_content_types() {
 
 		// Guides.
-		register_post_type( 'mai_guide', apply_filters( 'mai_guide_args', array(
+		register_post_type( 'mai_guide', apply_filters( 'maiguides_guide_args', array(
 			'exclude_from_search' => false,
 			'has_archive'         => true,
 			'hierarchical'        => true,
