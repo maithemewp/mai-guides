@@ -3,7 +3,7 @@
 /**
  * Plugin Name:     Mai Guides
  * Plugin URI:      https://maitheme.com
- * Description:     Create SEO friendly guide posts that feature an ordered list of hand-picked posts. Requires ACF Pro for relationships.
+ * Description:     Create SEO friendly guide posts that feature an ordered list of hand-picked posts. Requires ACF to choose posts for your guides.
  * Version:         0.1.0
  *
  * Author:          BizBudding, Mike Hemberger
