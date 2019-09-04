@@ -1,24 +1,37 @@
+.widget_mai_guides,
 .widget.boxed.widget_mai_guides {
 	padding: 0;
-	border: 1px solid rgba(0, 0, 0, 0.06);
+	border: none;
+}
+
+.entry-content .mai-guides-container {
+	margin-bottom: 24px;
 }
 
 .mai-guides-container .mai-guides,
 .entry-content .mai-guides-container .mai-guides,
 .sidebar .mai-guides-container .mai-guides {
-	list-style-type: none;padding: 0;margin: 0;
+	list-style: none !important;
+	padding: 0 0 12px;
+	margin: 0;
+	border: 1px solid #f0f0f0;
 }
 
 .mai-guides-container .mai-guide,
 .entry-content .mai-guides-container .mai-guide,
 .sidebar .mai-guides-container .mai-guide {
-	margin-bottom: 0;
+	list-style: none !important;
+	text-indent: 0;
+	padding: 0;
+	margin: 0;
 }
+
 
 .mai-guide .mai-guide__link {
 	position: relative;
 	display: block;
 	color: currentColor;
+	text-decoration: none;
 	padding: 10px 16px 10px 18px;
 }
 
@@ -51,12 +64,23 @@
 	max-width: 40px;
 }
 
+.mai-guide-main {
+	color: rgba(0, 0, 0, 0.6);
+	margin-bottom: 12px !important;
+}
+
 .mai-guide-main .mai-guide__link {
 	font-weight: bold;
 	text-transform: uppercase;
 	letter-spacing: 1px;
 	padding: 16px;
-	border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+	border-bottom: 1px solid #f0f0f0;
+	opacity: .8;
+}
+
+.mai-guide-main .mai-guide__link:hover,
+.mai-guide-main .mai-guide__link:focus {
+	opacity: 1;
 }
 
 .mai-guide__link svg {

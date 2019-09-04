@@ -27,7 +27,7 @@ class Mai_Guides_Widget extends WP_Widget {
 	public function widget( $args, $instance ) {
 
 		// Get guides.
-		$guides = maiguides_get_guides();
+		$guides = maiguides_get_guide_content();
 
 		// Bail if empty.
 		if ( empty( $guides ) ) {

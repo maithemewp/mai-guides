@@ -146,11 +146,12 @@ final class Mai_Guides {
 
 		add_action( 'admin_init',             array( $this, 'updater' ) );
 		add_action( 'init',                   array( $this, 'register_content_types' ) );
+		add_action( 'wp_enqueue_scripts',     array( $this, 'register_styles' ) );
+		add_shortcode( 'guide_content',       array( $this, 'register_shortcode' ) );
 		add_filter( 'acf/settings/load_json', array( $this, 'load_json' ) );
 
 		register_activation_hook( __FILE__, array( $this, 'activate' ) );
 		register_deactivation_hook( __FILE__, 'flush_rewrite_rules' );
-
 	}
 
 	/**
@@ -217,7 +218,37 @@ final class Mai_Guides {
 			'rewrite'            => array( 'slug' => 'guides', 'with_front' => false ),
 			'supports'           => array( 'title', 'editor', 'author', 'thumbnail', 'genesis-cpt-archives-settings', 'genesis-adjacent-entry-nav' ),
 		) ) );
+	}
 
+	/**
+	 * Register CSS files.
+	 *
+	 * @since   0.1.0
+	 * @return  void
+	 */
+	function register_styles() {
+		wp_register_style( 'mai-guides', MAI_GUIDES_PLUGIN_URL . "assets/css/mai-guides{$this->get_suffix()}.css", array(), MAI_GUIDES_VERSION );
+	}
+
+	/**
+	 * Helper function for getting the script/style `.min` suffix for minified files.
+	 *
+	 * @since   0.1.0
+	 * @return  string
+	 */
+	function get_suffix() {
+		$debug = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG;
+		return $debug ? '' : '.min';
+	}
+
+	/**
+	 * Register [guides] shortcode.
+	 *
+	 * @since   0.1.0
+	 * @return  string
+	 */
+	function register_shortcode( $atts ) {
+		return maiguides_get_guide_content();
 	}
 
 	/**
@@ -231,6 +262,7 @@ final class Mai_Guides {
 		$paths[] = untrailingslashit( MAI_GUIDES_PLUGIN_DIR ) . '/acf-json';
 		return $paths;
 	}
+
 
 	/**
 	 * Plugin activation.
