@@ -1,18 +1,18 @@
 <?php
 
 /**
- * Adds Mai_Guide_Content_Widget widget.
+ * Adds Mai_Guide_TOC_Widget widget.
  */
-class Mai_Guide_Content_Widget extends WP_Widget {
+class Mai_Guide_TOC_Widget extends WP_Widget {
 
 	/**
 	 * Register widget with WordPress.
 	 */
 	public function __construct() {
 		parent::__construct(
-	 		'mai_guide_content', // Base ID.
-			__( 'Guide Content', 'mai-guides' ), // Name.
-			array( 'description' => __( 'Show guide content on any guides or posts that are in a guide.', 'mai-guides' ), ) // Args.
+	 		'maiguides_toc', // Base ID.
+			__( 'Guide Table Of Contents', 'mai-guides' ), // Name.
+			array( 'description' => __( 'Show a guide table of contents on any guides or guide entries.', 'mai-guides' ), ) // Args.
 		);
 	}
 
@@ -26,11 +26,11 @@ class Mai_Guide_Content_Widget extends WP_Widget {
 	 */
 	public function widget( $args, $instance ) {
 
-		// Get guides.
-		$guides = maiguides_get_guide_content();
+		// Get toc.
+		$toc = maiguides_get_table_of_contents();
 
 		// Bail if empty.
-		if ( empty( $guides ) ) {
+		if ( empty( $toc ) ) {
 			return;
 		}
 
@@ -43,7 +43,7 @@ class Mai_Guide_Content_Widget extends WP_Widget {
 			echo $before_title . $title . $after_title;
 		}
 
-		echo $guides;
+		echo $toc;
 
 		echo $after_widget;
 	}
@@ -86,5 +86,5 @@ class Mai_Guide_Content_Widget extends WP_Widget {
 
 // Register our new widget.
 add_action( 'widgets_init', function() {
-	register_widget( 'Mai_Guide_Content_Widget' );
+	register_widget( 'Mai_Guide_TOC_Widget' );
 });

@@ -7,7 +7,7 @@
             "label": "Guide Entries",
             "name": "guide_entries",
             "type": "relationship",
-            "instructions": "Choose entries that are in this guide.",
+            "instructions": "Choose posts that are in this guide.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -34,7 +34,7 @@
             "label": "Before Guide Content",
             "name": "guide_before_content",
             "type": "wysiwyg",
-            "instructions": "This content will be shown before the Guide and Guide Entry content.",
+            "instructions": "This content will be shown before the Guide and Guide Entry content. Use [guide_toc] to show the table of contents for this guide.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -53,7 +53,7 @@
             "label": "After Guide Content",
             "name": "guide_after_content",
             "type": "wysiwyg",
-            "instructions": "This content will be shown after the Guide and Guide Entry content.",
+            "instructions": "This content will be shown after the Guide and Guide Entry content. Use [guide_toc] to show the table of contents for this guide.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -85,5 +85,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1567817262
+    "modified": 1567823978
 }
