@@ -7,7 +7,7 @@
             "label": "Guide Entries",
             "name": "guide_entries",
             "type": "relationship",
-            "instructions": "Choose posts that are in this guide.",
+            "instructions": "Choose entries that are in this guide.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
