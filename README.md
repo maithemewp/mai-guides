@@ -5,4 +5,4 @@
 1. Requires Advanced Custom Fields plugin to choose posts that are in your guide.
 1. For flexibility the plugin does not automatically display your guide content list.
 1. Includes a custom widget to show guide content.
-1. Includes [guide_content] shortcode to easily show guide content anywhere in your post content.
+1. Includes [guide_toc] shortcode to easily show guide content anywhere in your post content.
