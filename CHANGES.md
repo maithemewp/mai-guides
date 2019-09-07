@@ -1,8 +1,9 @@
 # Changelog
 
 ## 0.3.0 (9/6/18)
+* This is a big refactor with breaking changes before the plugin goes live anywhere.
 * Added: `maiguides_before_content` and `maiguides_after_content` hooks.
-* Changed: [guide_content] is now [guide_toc] shortcode. This is a breaking change before the plugin goes live anywhere.
+* Changed: [guide_content] is now [guide_toc] shortcode.
 
 ## 0.2.0 (9/4/18)
 * Add excerpt support to Guides.
