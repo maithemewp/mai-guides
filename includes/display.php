@@ -67,8 +67,16 @@ function maiguides_do_after_content() {
 add_action( 'genesis_entry_content', 'maiguides_do_before_guide_content', 8 );
 function maiguides_do_before_guide_content() {
 
+	// Get the guide ID.
+	$guide_id = maiguides_get_guide_id();
+
 	// Bail if no guide ID.
-	if ( ! maiguides_get_guide_id() ) {
+	if ( ! $guide_id ) {
+		return;
+	}
+
+	// Bail if user cannot view the guide..
+	if ( ! maiguides_can_view( $guide_id ) ) {
 		return;
 	}
 
@@ -85,8 +93,16 @@ function maiguides_do_before_guide_content() {
 add_action( 'genesis_entry_content', 'maiguides_do_after_guide_content', 12 );
 function maiguides_do_after_guide_content() {
 
+	// Get the guide ID.
+	$guide_id = maiguides_get_guide_id();
+
 	// Bail if no guide ID.
-	if ( ! maiguides_get_guide_id() ) {
+	if ( ! $guide_id ) {
+		return;
+	}
+
+	// Bail if user cannot view the guide..
+	if ( ! maiguides_can_view( $guide_id ) ) {
 		return;
 	}
 
