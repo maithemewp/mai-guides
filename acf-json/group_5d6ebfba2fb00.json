@@ -5,7 +5,7 @@
         {
             "key": "field_5d6ec36cc4267",
             "label": "Guide Entries",
-            "name": "guide_entries",
+            "name": "guide_ids",
             "type": "relationship",
             "instructions": "Choose entries that are in this guide.",
             "required": 0,
