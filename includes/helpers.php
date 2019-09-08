@@ -221,10 +221,14 @@ function maiguides_get_processed_content( $content ) {
 function maiguides_can_view( $post_id ) {
 	// Get guide status.
 	$status = get_post_status( $post_id );
-	// Bail if guide is not public or guide is private and current user cannot view.
-	if ( ( 'publish' !== $status ) || ( ( 'private' === $status ) && ! current_user_can( 'read_private_posts' ) ) ) {
-		return false;
+	// If guide is not public.
+	if ( 'publish' === $status ) {
+		return true;
 	}
-	// Yep!
-	return true;
+	// If guide is private and current user can view private posts.
+	if ( ( 'private' === $status ) && current_user_can( 'read_private_posts' ) ) {
+		return true;
+	}
+	// Nope!
+	return false;
 }
