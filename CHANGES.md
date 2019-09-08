@@ -1,6 +1,11 @@
 # Changelog
 
 
+## 0.4.2 (9/8/18)
+* Added: Genesis layout support for guides.
+* Added: Genesis SEO settings support fo guides.
+* Fixed: Permissions on before/after content for guide entries.
+
 ## 0.4.1 (9/8/18)
 * Changed: Better permission handling for private guides and guide entries in TOC.
 
