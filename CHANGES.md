@@ -1,5 +1,9 @@
 # Changelog
 
+
+## 0.4.1 (9/8/18)
+* Changed: Better permission handling for private guides and guide entries in TOC.
+
 ## 0.4.0 (9/8/18)
 * Changed: Revert meta_key to original, intended name `guide_ids`.
 

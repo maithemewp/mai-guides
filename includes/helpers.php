@@ -16,6 +16,11 @@ function maiguides_get_table_of_contents() {
 		return;
 	}
 
+	// Bail if user cannot view the guide.
+	if ( ! maiguides_can_view( $guide_id ) ) {
+		return;
+	}
+
 	// Get post IDs.
 	$entry_ids = maiguides_get_guide_entry_ids();
 
@@ -147,6 +152,10 @@ function maiguides_get_guide_entry_post_types() {
  * @return  string
  */
 function maiguides_get_guide_list_item( $entry_id, $count = '', $is_guide = false ) {
+	// Bail if user cannot view the entry.
+	if ( ! maiguides_can_view( $entry_id ) ) {
+		return '';
+	}
 	$icon    = '<svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" version="1.1" x="0px" y="0px" viewBox="0 0 70 90"><path d="M 5.9881889,0 C 2.6929133,0 0,2.6929134 0,5.988189 L 0,84.011811 C 0,87.307087 2.6929133,90 5.9881889,90 l 58.0039361,0 c 3.295276,0 6.023622,-2.692913 6.023622,-5.988189 l 0,-78.023622 C 70.015747,2.6929134 67.287401,0 63.992125,0 z m 0,4.003937 58.0039361,0 c 1.133858,0 2.019685,0.8503937 2.019685,1.984252 l 0,78.023622 c 0,1.133858 -0.885827,1.984252 -2.019685,1.984252 l -58.0039361,0 c -1.1338583,0 -1.9842519,-0.850394 -1.9842519,-1.984252 l 0,-78.023622 c 0,-1.1338583 0.8503936,-1.984252 1.9842519,-1.984252 z m 4.9960631,13.003937 0,8.007874 8.007874,0 0,-8.007874 z m 17.007874,1.984252 c -1.098426,0 -1.984252,0.885827 -1.984252,2.019685 0,1.098425 0.885826,1.984252 1.984252,1.984252 l 29.019684,0 c 1.098425,0 1.984252,-0.885827 1.984252,-1.984252 0,-1.133858 -0.885827,-2.019685 -1.984252,-2.019685 z m -17.007874,13.996063 0,8.007874 8.007874,0 0,-8.007874 z m 17.007874,2.019685 c -1.098426,0 -1.984252,0.885827 -1.984252,1.984252 0,1.098425 0.885826,2.019685 1.984252,2.019685 l 29.019684,0 c 1.098425,0 1.984252,-0.92126 1.984252,-2.019685 0,-1.098425 -0.885827,-1.984252 -1.984252,-1.984252 z m -17.007874,13.996063 0,8.007874 8.007874,0 0,-8.007874 z m 17.007874,1.984252 c -1.098426,0 -1.984252,0.92126 -1.984252,2.019685 0,1.098425 0.885826,1.984252 1.984252,1.984252 l 29.019684,0 c 1.098425,0 1.984252,-0.885827 1.984252,-1.984252 0,-1.098425 -0.885827,-2.019685 -1.984252,-2.019685 z m -17.007874,13.996063 0,8.007874 8.007874,0 0,-8.007874 z m 17.007874,2.019685 c -1.098426,0 -1.984252,0.885827 -1.984252,1.984252 0,1.133858 0.885826,2.019685 1.984252,2.019685 l 29.019684,0 c 1.098425,0 1.984252,-0.885827 1.984252,-2.019685 0,-1.098425 -0.885827,-1.984252 -1.984252,-1.984252 z" style="" fill="currentColor" fill-rule="nonzero" stroke="none"/></svg>';
 	$icon    = apply_filters( 'maiguides_guide_icon', $icon );
 	$guide   = $is_guide ? ' mai-guide-main' : '';
@@ -200,4 +209,22 @@ function maiguides_get_processed_content( $content ) {
 		$content = convert_smilies( $content );                   // WP runs priority 20.
 	}
 	return $content;
+}
+
+/**
+ * Check if a user can view a post by ID.
+ *
+ * @since   0.4.1
+ * @param   int  The post ID to check.
+ * @return  bool
+ */
+function maiguides_can_view( $post_id ) {
+	// Get guide status.
+	$status = get_post_status( $post_id );
+	// Bail if guide is not public or guide is private and current user cannot view.
+	if ( ( 'publish' !== $status ) || ( ( 'private' === $status ) && ! current_user_can( 'read_private_posts' ) ) ) {
+		return false;
+	}
+	// Yep!
+	return true;
 }
