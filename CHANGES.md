@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.4.0 (9/8/18)
+* Changed: Revert meta_key to original, intended name `guide_ids`.
+
 ## 0.3.0 (9/6/18)
 * This is a big refactor with breaking changes before the plugin goes live anywhere.
 * Added: `maiguides_before_content` and `maiguides_after_content` hooks.
