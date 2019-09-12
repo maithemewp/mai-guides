@@ -74,6 +74,11 @@
 	background-color: rgba(0, 0, 0, 0.04);
 }
 
+.mai-guide__count {
+	min-width: 16px;
+	text-align: center;
+}
+
 .mai-guide__img {
 	display: block;
 	max-width: 40px;
