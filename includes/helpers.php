@@ -17,7 +17,7 @@ function maiguides_get_table_of_contents( $atts ) {
 		'title_wrap' => 'h3',
 		'entry_wrap' => 'h4',
 		'image_size' => 'tiny',
-	), $atts, 'svg_icon' );
+	), $atts, 'guide_toc' );
 
 	// Sanitize.
 	$atts = array(
