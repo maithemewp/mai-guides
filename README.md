@@ -7,6 +7,12 @@
 1. Includes a custom widget to show guide content.
 1. Includes [guide_toc] shortcode to easily show guide content anywhere in your post content.
 
+## Screenshots
+### Table Of Contents
+![Mai Guides Table Of Contents](/assets/images/toc.png)<br />
+### Backend Metabox (Requires ACF)
+![Mai Guides Metabox](/assets/images/metabox.png)
+
 ## How To Use
 1. Install and activate the plugin as you would any WordPress plugin.
 1. Navigation to Dashboard > Guides > Add New to create your first guide.
