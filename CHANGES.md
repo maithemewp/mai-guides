@@ -1,6 +1,10 @@
 # Changelog
 
 
+## 0.5.1 (9/12/18)
+* Added: Screenshots to ReadMe.
+* Added: Min-width to guide entry number in table of contents.
+
 ## 0.5.0 (9/12/18)
 * Added: New 'guide_id', 'id', 'class', 'title', 'title_wrap', 'entry_wrap', and 'image_size' parameters to [guide_toc] shortcode.
 * Changed: The table of contents main heading is no longer a link.

@@ -32,7 +32,7 @@
 ```
 guide_id
 ```
-#### Example
+**Example**
 ```
 [guide_toc guide_id="123"]
 ```
@@ -42,7 +42,7 @@ Default: The ID of the main guide of the post you are on.
 ```
 title
 ```
-#### Example
+**Example**
 ```
 [guide_toc title="Welcome To My Guide!"]
 ```
@@ -52,7 +52,7 @@ Default: The main guide title.
 ```
 title_wrap
 ```
-#### Example
+**Example**
 ```
 [guide_toc title_wrap="h2"]
 ```
@@ -62,7 +62,7 @@ Default: h3
 ```
 entry_wrap
 ```
-#### Example
+**Example**
 ```
 [guide_toc entry_wrap="h3"]
 ```
@@ -72,7 +72,7 @@ Default: h4
 ```
 class
 ```
-#### Example
+**Example**
 ```
 [guide_toc class="my-custom-class"]
 ```
@@ -81,7 +81,7 @@ Add one or more additional HTML classes to the main container element.
 ```
 image_size
 ```
-#### Example
+**Example**
 ```
 [guide_toc image_size="thumbnail"]
 ```
