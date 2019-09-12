@@ -1,6 +1,11 @@
 # Changelog
 
 
+## 0.5.0 (9/12/18)
+* Added: New 'guide_id', 'id', 'class', 'title', 'title_wrap', 'entry_wrap', and 'image_size' parameters to [guide_toc] shortcode.
+* Changed: The table of contents main heading is no longer a link.
+* Changed: The main guide in the table of contents is now the first entry in the list.
+
 ## 0.4.2 (9/8/18)
 * Added: Genesis layout support for guides.
 * Added: Genesis SEO settings support fo guides.

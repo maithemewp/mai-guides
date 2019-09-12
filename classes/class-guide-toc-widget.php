@@ -27,7 +27,7 @@ class Mai_Guide_TOC_Widget extends WP_Widget {
 	public function widget( $args, $instance ) {
 
 		// Get toc.
-		$toc = maiguides_get_table_of_contents();
+		$toc = maiguides_get_table_of_contents( $args );
 
 		// Bail if empty.
 		if ( empty( $toc ) ) {

@@ -7,6 +7,81 @@
 1. Includes a custom widget to show guide content.
 1. Includes [guide_toc] shortcode to easily show guide content anywhere in your post content.
 
+## How To Use
+1. Install and activate the plugin as you would any WordPress plugin.
+1. Navigation to Dashboard > Guides > Add New to create your first guide.
+1. Add your main guide content as you would any WordPress page or post.
+1. Scroll down to the "Guides" metabox and select as many posts as you want in your guide.
+1. Drag posts in the order you want.
+1. Any any content you'd like to show before and/or after the main guide and any entries you have in your guide. This is a great spot for the `[guide_toc]` shortcode.
+1. Optionally add the "Guide Table Of Contents" widget in Dashboard > Appearance > Widgets. The widget will not display unless you're on a main guide or guide entry page.
+
+## Table Of Contents
+### Default Usage
+```
+[guide_toc]
+```
+### Custom Usage
+#### Parameters
+```
+guide_id
+```
+#### Example
+```
+[guide_toc guide_id="123"]
+```
+Display the TOC for a specific guide.<br />
+Default: The ID of the main guide of the post you are on.
+
+```
+title
+```
+#### Example
+```
+[guide_toc title="Welcome To My Guide!"]
+```
+Add a custom title to the top of the TOC.<br />
+Default: The main guide title.
+
+```
+title_wrap
+```
+#### Example
+```
+[guide_toc title_wrap="h2"]
+```
+Change the main title wrapping element.
+Default: h3
+
+```
+entry_wrap
+```
+#### Example
+```
+[guide_toc entry_wrap="h3"]
+```
+Change the entry title wrapping element.
+Default: h4
+
+```
+class
+```
+#### Example
+```
+[guide_toc class="my-custom-class"]
+```
+Add one or more additional HTML classes to the main container element.
+
+```
+image_size
+```
+#### Example
+```
+[guide_toc image_size="thumbnail"]
+```
+Change the image size used for each guide entry.<br />
+Default: tiny
+
 ## Filters
 `maiguides_entry_post_types`
 ```

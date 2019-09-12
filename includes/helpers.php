@@ -6,41 +6,84 @@
  * @since   0.1.0
  * @return  string
  */
-function maiguides_get_table_of_contents() {
+function maiguides_get_table_of_contents( $atts ) {
 
-	// Get the main guide ID.
-	$guide_id = maiguides_get_guide_id();
+	// Atts.
+	$atts = shortcode_atts( array(
+		'guide_id'   => maiguides_get_guide_id(),
+		'id'         => '',
+		'class'      => '',
+		'title'      => '',
+		'title_wrap' => 'h3',
+		'entry_wrap' => 'h4',
+		'image_size' => 'tiny',
+	), $atts, 'svg_icon' );
+
+	// Sanitize.
+	$atts = array(
+		'guide_id'   => absint( $atts['guide_id'] ),
+		'id'         => esc_attr( $atts['id'] ),
+		'class'      => esc_attr( $atts['class'] ),
+		'title'      => sanitize_text_field( $atts['title'] ),
+		'title_wrap' => esc_attr( $atts['title_wrap'] ),
+		'entry_wrap' => esc_attr( $atts['entry_wrap'] ),
+		'image_size' => esc_attr( $atts['image_size'] ),
+	);
 
 	// Bail if no guide ID.
-	if ( ! $guide_id ) {
+	if ( ! $atts['guide_id'] ) {
 		return;
 	}
 
 	// Bail if user cannot view the guide.
-	if ( ! maiguides_can_view( $guide_id ) ) {
+	if ( ! maiguides_can_view( $atts['guide_id'] ) ) {
 		return;
 	}
 
 	// Get post IDs.
-	$entry_ids = maiguides_get_guide_entry_ids();
+	$entry_ids = maiguides_get_guide_entry_ids( $atts['guide_id'] );
 
 	// Bail if no post IDs.
 	if ( empty( $entry_ids ) || ! is_array( $entry_ids ) ) {
 		return;
 	}
 
+	// Load styles.
 	wp_enqueue_style( 'mai-guides' );
 
+	// Add custom id/class.
+	$id    = trim( $atts['id'] );
+	$id    = ! empty( $atts['id'] ) ? sprintf( 'id="%s" ', $atts['id'] ) : '';
+	$class = trim( $atts['class'] );
+	$class = ! empty( $class ) ? sprintf( ' %s', $class ) : '';
+
+	// Get it started.
 	$html  = '';
-	$html .= '<div class="mai-guides-container">';
+	$html .= sprintf( '<div %sclass="mai-guides-container%s">', $id, $class );
+
+		// Heading.
+		$title = ! empty( $atts['title'] ) ? $atts['title']: get_the_title( $atts['guide_id'] );
+		$icon  = '<svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" version="1.1" x="0px" y="0px" viewBox="0 0 70 90"><path d="M 5.9881889,0 C 2.6929133,0 0,2.6929134 0,5.988189 L 0,84.011811 C 0,87.307087 2.6929133,90 5.9881889,90 l 58.0039361,0 c 3.295276,0 6.023622,-2.692913 6.023622,-5.988189 l 0,-78.023622 C 70.015747,2.6929134 67.287401,0 63.992125,0 z m 0,4.003937 58.0039361,0 c 1.133858,0 2.019685,0.8503937 2.019685,1.984252 l 0,78.023622 c 0,1.133858 -0.885827,1.984252 -2.019685,1.984252 l -58.0039361,0 c -1.1338583,0 -1.9842519,-0.850394 -1.9842519,-1.984252 l 0,-78.023622 c 0,-1.1338583 0.8503936,-1.984252 1.9842519,-1.984252 z m 4.9960631,13.003937 0,8.007874 8.007874,0 0,-8.007874 z m 17.007874,1.984252 c -1.098426,0 -1.984252,0.885827 -1.984252,2.019685 0,1.098425 0.885826,1.984252 1.984252,1.984252 l 29.019684,0 c 1.098425,0 1.984252,-0.885827 1.984252,-1.984252 0,-1.133858 -0.885827,-2.019685 -1.984252,-2.019685 z m -17.007874,13.996063 0,8.007874 8.007874,0 0,-8.007874 z m 17.007874,2.019685 c -1.098426,0 -1.984252,0.885827 -1.984252,1.984252 0,1.098425 0.885826,2.019685 1.984252,2.019685 l 29.019684,0 c 1.098425,0 1.984252,-0.92126 1.984252,-2.019685 0,-1.098425 -0.885827,-1.984252 -1.984252,-1.984252 z m -17.007874,13.996063 0,8.007874 8.007874,0 0,-8.007874 z m 17.007874,1.984252 c -1.098426,0 -1.984252,0.92126 -1.984252,2.019685 0,1.098425 0.885826,1.984252 1.984252,1.984252 l 29.019684,0 c 1.098425,0 1.984252,-0.885827 1.984252,-1.984252 0,-1.098425 -0.885827,-2.019685 -1.984252,-2.019685 z m -17.007874,13.996063 0,8.007874 8.007874,0 0,-8.007874 z m 17.007874,2.019685 c -1.098426,0 -1.984252,0.885827 -1.984252,1.984252 0,1.133858 0.885826,2.019685 1.984252,2.019685 l 29.019684,0 c 1.098425,0 1.984252,-0.885827 1.984252,-2.019685 0,-1.098425 -0.885827,-1.984252 -1.984252,-1.984252 z" style="" fill="currentColor" fill-rule="nonzero" stroke="none"/></svg>';
+		$icon  = apply_filters( 'maiguides_guide_icon', $icon );
+		$html  .= '<div class="mai-guide__heading">';
+			$html .= '<span class="row gutter-xs middle-xs">';
+				$html .= $icon ? sprintf( '<span class="mai-guide__icon col col-xs-auto column center-xs middle-xs">%s</span>', $icon ) : '';
+				$html .= sprintf( '<span class="mai-guide__title col col-xs"><%s>%s</%s></span>', $atts['title_wrap'], $title, $atts['title_wrap'] );
+			$html .= '</span>';
+		$html .= '</div>';
+
+		// Start counter.
+		$i = 1;
+
+		// List.
 		$html .= '<ol class="mai-guides">';
-			$html .= maiguides_get_guide_list_item( $guide_id, false, true );
-			$i = 1;
+			$html .= maiguides_get_guide_list_item( $atts['guide_id'], $i, $atts );
 			foreach ( $entry_ids as $entry_id ) {
-				$html .= maiguides_get_guide_list_item( $entry_id, $i );
 				$i++;
+				$html .= maiguides_get_guide_list_item( $entry_id, $i, $atts );
 			}
 		$html .= '</ol>';
+
 	$html .= '</div>';
 
 	return apply_filters( 'maiguides_table_of_contents', $html );
@@ -52,10 +95,7 @@ function maiguides_get_table_of_contents() {
  * @since   0.3.0
  * @return  array|false
  */
-function maiguides_get_guide_entry_ids() {
-
-	// Get the main guide ID.
-	$guide_id = maiguides_get_guide_id();
+function maiguides_get_guide_entry_ids( $guide_id ) {
 
 	// Bail if no ID.
 	if ( ! $guide_id ) {
@@ -145,31 +185,24 @@ function maiguides_get_guide_entry_post_types() {
  *
  * @since   0.1.0
  *
- * @param   int     $entry_id   The post ID to get the guide from.
- * @param   int     $count     The count/order the post is in.
- * @param   bool    $is_guide  Whether the guide is the main guide or a post.
+ * @param   int    $entry_id   The post ID to get the guide from.
+ * @param   int    $count      The count/order the post is in.
+ * @param   array  $atts       The shortcode attributes.
  *
  * @return  string
  */
-function maiguides_get_guide_list_item( $entry_id, $count = '', $is_guide = false ) {
+function maiguides_get_guide_list_item( $entry_id, $count = '', $atts ) {
 	// Bail if user cannot view the entry.
 	if ( ! maiguides_can_view( $entry_id ) ) {
 		return '';
 	}
-	$icon    = '<svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" version="1.1" x="0px" y="0px" viewBox="0 0 70 90"><path d="M 5.9881889,0 C 2.6929133,0 0,2.6929134 0,5.988189 L 0,84.011811 C 0,87.307087 2.6929133,90 5.9881889,90 l 58.0039361,0 c 3.295276,0 6.023622,-2.692913 6.023622,-5.988189 l 0,-78.023622 C 70.015747,2.6929134 67.287401,0 63.992125,0 z m 0,4.003937 58.0039361,0 c 1.133858,0 2.019685,0.8503937 2.019685,1.984252 l 0,78.023622 c 0,1.133858 -0.885827,1.984252 -2.019685,1.984252 l -58.0039361,0 c -1.1338583,0 -1.9842519,-0.850394 -1.9842519,-1.984252 l 0,-78.023622 c 0,-1.1338583 0.8503936,-1.984252 1.9842519,-1.984252 z m 4.9960631,13.003937 0,8.007874 8.007874,0 0,-8.007874 z m 17.007874,1.984252 c -1.098426,0 -1.984252,0.885827 -1.984252,2.019685 0,1.098425 0.885826,1.984252 1.984252,1.984252 l 29.019684,0 c 1.098425,0 1.984252,-0.885827 1.984252,-1.984252 0,-1.133858 -0.885827,-2.019685 -1.984252,-2.019685 z m -17.007874,13.996063 0,8.007874 8.007874,0 0,-8.007874 z m 17.007874,2.019685 c -1.098426,0 -1.984252,0.885827 -1.984252,1.984252 0,1.098425 0.885826,2.019685 1.984252,2.019685 l 29.019684,0 c 1.098425,0 1.984252,-0.92126 1.984252,-2.019685 0,-1.098425 -0.885827,-1.984252 -1.984252,-1.984252 z m -17.007874,13.996063 0,8.007874 8.007874,0 0,-8.007874 z m 17.007874,1.984252 c -1.098426,0 -1.984252,0.92126 -1.984252,2.019685 0,1.098425 0.885826,1.984252 1.984252,1.984252 l 29.019684,0 c 1.098425,0 1.984252,-0.885827 1.984252,-1.984252 0,-1.098425 -0.885827,-2.019685 -1.984252,-2.019685 z m -17.007874,13.996063 0,8.007874 8.007874,0 0,-8.007874 z m 17.007874,2.019685 c -1.098426,0 -1.984252,0.885827 -1.984252,1.984252 0,1.133858 0.885826,2.019685 1.984252,2.019685 l 29.019684,0 c 1.098425,0 1.984252,-0.885827 1.984252,-2.019685 0,-1.098425 -0.885827,-1.984252 -1.984252,-1.984252 z" style="" fill="currentColor" fill-rule="nonzero" stroke="none"/></svg>';
-	$icon    = apply_filters( 'maiguides_guide_icon', $icon );
-	$guide   = $is_guide ? ' mai-guide-main' : '';
 	$current = ( get_the_ID() === (int) $entry_id ) ? ' mai-current-guide' : '';
-	$html    = sprintf( '<li class="mai-guide%s%s">', $guide, $current );
+	$html    = sprintf( '<li class="mai-guide%s">', $current );
 		$html .= sprintf( '<a class="mai-guide__link" href="%s">', get_permalink( $entry_id ) );
 			$html .= '<span class="row gutter-xs middle-xs">';
-				if ( $is_guide ) {
-					$html .= $icon ? $icon : '';
-				} else {
-					$html .= sprintf( '<span class="mai-guide__count col col-xs-auto">%s</span>', $count );
-					$html .= sprintf( '<span class="mai-guide__image col col-xs-auto">%s</span>', wp_get_attachment_image( get_post_thumbnail_id( $entry_id ), 'tiny', false, array( 'class' => 'mai-guide__img' ) ) );
-				}
-				$html .= sprintf( '<span class="mai-guide__title col col-xs"><h4 class="bottom-xs-none">%s</h4></span>', get_the_title( $entry_id ) );
+				$html .= sprintf( '<span class="mai-guide__count col col-xs-auto">%s</span>', $count );
+				$html .= sprintf( '<span class="mai-guide__image col col-xs-auto">%s</span>', wp_get_attachment_image( get_post_thumbnail_id( $entry_id ), $atts['image_size'], false, array( 'class' => 'mai-guide__img' ) ) );
+				$html .= sprintf( '<span class="mai-guide__title col col-xs"><%s class="bottom-xs-none">%s</%s></span>', $atts['title_wrap'], get_the_title( $entry_id ), $atts['title_wrap'] );
 			$html .= '</span>';
 		$html .= '</a>';
 	$html .= '</li>';

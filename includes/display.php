@@ -130,5 +130,5 @@ function maiguides_register_styles() {
  */
 add_shortcode( 'guide_toc', 'maiguides_get_guide_toc_shortcode' );
 function maiguides_get_guide_toc_shortcode( $atts ) {
-	return maiguides_get_table_of_contents();
+	return maiguides_get_table_of_contents( $atts );
 }
