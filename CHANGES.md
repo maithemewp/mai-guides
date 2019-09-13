@@ -1,6 +1,9 @@
 # Changelog
 
 
+## 0.6.0 (9/13/18)
+* Added: Page attributes support to Guides so you can set a parent guide pages via the metabox.
+
 ## 0.5.1 (9/12/18)
 * Added: Screenshots to ReadMe.
 * Added: Min-width to guide entry number in table of contents.
