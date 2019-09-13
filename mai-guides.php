@@ -215,7 +215,7 @@ final class Mai_Guides {
 			'show_in_nav_menus'  => true,
 			'show_ui'            => true,
 			'rewrite'            => array( 'slug' => 'guides', 'with_front' => false ),
-			'supports'           => array( 'title', 'editor', 'excerpt', 'author', 'thumbnail', 'genesis-cpt-archives-settings', 'genesis-layouts', 'genesis-adjacent-entry-nav', 'genesis-seo' ),
+			'supports'           => array( 'title', 'editor', 'excerpt', 'author', 'thumbnail', 'page-attributes', 'genesis-cpt-archives-settings', 'genesis-layouts', 'genesis-adjacent-entry-nav', 'genesis-seo' ),
 		) ) );
 	}
 
