@@ -1,6 +1,9 @@
 # Changelog
 
 
+## 0.6.1 (9/16/18)
+* Changed: Only show top level guides on the main archive.
+
 ## 0.6.0 (9/13/18)
 * Added: Page attributes support to Guides so you can set a parent guide pages via the metabox.
 

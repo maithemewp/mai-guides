@@ -132,3 +132,27 @@ add_shortcode( 'guide_toc', 'maiguides_get_guide_toc_shortcode' );
 function maiguides_get_guide_toc_shortcode( $atts ) {
 	return maiguides_get_table_of_contents( $atts );
 }
+
+/**
+ * Only show top level guides on the main archive.
+ *
+ * @since   0.6.1
+ * @return  voide
+ */
+add_action( 'pre_get_posts', 'maiguides_only_top_level_guides' );
+function maiguides_only_top_level_guides( $query ) {
+	// Bail if in the Dashboard.
+	if ( is_admin() ) {
+		return;
+	}
+	// Bail if not the main query.
+	if ( ! $query->is_main_query() ) {
+		return;
+	}
+	// Bail if not the main guide archive.
+	if ( ! is_post_type_archive( 'mai_guide' ) ) {
+		return;
+	}
+	// Only show top level guides..
+	$query->set( 'post_parent', 0 );
+}
