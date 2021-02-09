@@ -63,13 +63,11 @@ function maiguides_get_table_of_contents( $atts ) {
 
 		// Heading.
 		$title = ! empty( $atts['title'] ) ? $atts['title']: get_the_title( $atts['guide_id'] );
-		$icon  = '<svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" version="1.1" x="0px" y="0px" viewBox="0 0 70 90"><path d="M 5.9881889,0 C 2.6929133,0 0,2.6929134 0,5.988189 L 0,84.011811 C 0,87.307087 2.6929133,90 5.9881889,90 l 58.0039361,0 c 3.295276,0 6.023622,-2.692913 6.023622,-5.988189 l 0,-78.023622 C 70.015747,2.6929134 67.287401,0 63.992125,0 z m 0,4.003937 58.0039361,0 c 1.133858,0 2.019685,0.8503937 2.019685,1.984252 l 0,78.023622 c 0,1.133858 -0.885827,1.984252 -2.019685,1.984252 l -58.0039361,0 c -1.1338583,0 -1.9842519,-0.850394 -1.9842519,-1.984252 l 0,-78.023622 c 0,-1.1338583 0.8503936,-1.984252 1.9842519,-1.984252 z m 4.9960631,13.003937 0,8.007874 8.007874,0 0,-8.007874 z m 17.007874,1.984252 c -1.098426,0 -1.984252,0.885827 -1.984252,2.019685 0,1.098425 0.885826,1.984252 1.984252,1.984252 l 29.019684,0 c 1.098425,0 1.984252,-0.885827 1.984252,-1.984252 0,-1.133858 -0.885827,-2.019685 -1.984252,-2.019685 z m -17.007874,13.996063 0,8.007874 8.007874,0 0,-8.007874 z m 17.007874,2.019685 c -1.098426,0 -1.984252,0.885827 -1.984252,1.984252 0,1.098425 0.885826,2.019685 1.984252,2.019685 l 29.019684,0 c 1.098425,0 1.984252,-0.92126 1.984252,-2.019685 0,-1.098425 -0.885827,-1.984252 -1.984252,-1.984252 z m -17.007874,13.996063 0,8.007874 8.007874,0 0,-8.007874 z m 17.007874,1.984252 c -1.098426,0 -1.984252,0.92126 -1.984252,2.019685 0,1.098425 0.885826,1.984252 1.984252,1.984252 l 29.019684,0 c 1.098425,0 1.984252,-0.885827 1.984252,-1.984252 0,-1.098425 -0.885827,-2.019685 -1.984252,-2.019685 z m -17.007874,13.996063 0,8.007874 8.007874,0 0,-8.007874 z m 17.007874,2.019685 c -1.098426,0 -1.984252,0.885827 -1.984252,1.984252 0,1.133858 0.885826,2.019685 1.984252,2.019685 l 29.019684,0 c 1.098425,0 1.984252,-0.885827 1.984252,-2.019685 0,-1.098425 -0.885827,-1.984252 -1.984252,-1.984252 z" style="" fill="currentColor" fill-rule="nonzero" stroke="none"/></svg>';
+		$icon  = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor" width="24" height="24"><path d="M88 56H40a16 16 0 0 0-16 16v48a16 16 0 0 0 16 16h48a16 16 0 0 0 16-16V72a16 16 0 0 0-16-16zm0 160H40a16 16 0 0 0-16 16v48a16 16 0 0 0 16 16h48a16 16 0 0 0 16-16v-48a16 16 0 0 0-16-16zm0 160H40a16 16 0 0 0-16 16v48a16 16 0 0 0 16 16h48a16 16 0 0 0 16-16v-48a16 16 0 0 0-16-16zm416 24H168a8 8 0 0 0-8 8v16a8 8 0 0 0 8 8h336a8 8 0 0 0 8-8v-16a8 8 0 0 0-8-8zm0-320H168a8 8 0 0 0-8 8v16a8 8 0 0 0 8 8h336a8 8 0 0 0 8-8V88a8 8 0 0 0-8-8zm0 160H168a8 8 0 0 0-8 8v16a8 8 0 0 0 8 8h336a8 8 0 0 0 8-8v-16a8 8 0 0 0-8-8z"/></svg>';
 		$icon  = apply_filters( 'maiguides_guide_icon', $icon );
 		$html  .= '<div class="mai-guide__heading">';
-			$html .= '<span class="row gutter-xs middle-xs">';
-				$html .= $icon ? sprintf( '<span class="mai-guide__icon col col-xs-auto column center-xs middle-xs">%s</span>', $icon ) : '';
-				$html .= sprintf( '<span class="mai-guide__title col col-xs"><%s>%s</%s></span>', $atts['title_wrap'], $title, $atts['title_wrap'] );
-			$html .= '</span>';
+			$html .= $icon ? sprintf( '<span class="mai-guide__icon">%s</span>', $icon ) : '';
+			$html .= sprintf( '<span class="mai-guide__title mai-guide__title-heading"><%s>%s</%s></span>', $atts['title_wrap'], $title, $atts['title_wrap'] );
 		$html .= '</div>';
 
 		// Start counter.
@@ -132,7 +130,7 @@ function maiguides_get_guide_id() {
 		if ( empty( $guide_ids ) || ! is_array( $guide_ids ) ) {
 			return false;
 		}
-		$guide_id = $guide_ids[0];
+		$guide_id = reset( $guide_ids );
 	}
 
 	return absint( $guide_id );
@@ -176,8 +174,13 @@ function maiguides_is_table_of_contents() {
  * @return  array
  */
 function maiguides_get_guide_entry_post_types() {
+	static $post_types = null;
+	if ( ! is_null( $post_types ) ) {
+		return $post_types;
+	}
 	$post_types = array( 'post' );
-	return (array) apply_filters( 'maiguides_entry_post_types', $post_types );
+	$post_types = apply_filters( 'maiguides_entry_post_types', $post_types );
+	return (array) $post_types;
 }
 
 /**
@@ -196,14 +199,13 @@ function maiguides_get_guide_list_item( $entry_id, $count = '', $atts ) {
 	if ( ! maiguides_can_view( $entry_id ) ) {
 		return '';
 	}
-	$current = ( get_the_ID() === (int) $entry_id ) ? ' mai-current-guide' : '';
-	$html    = sprintf( '<li class="mai-guide%s">', $current );
+	$current  = ( get_the_ID() === (int) $entry_id ) ? ' mai-current-guide' : '';
+	$image_id = get_post_thumbnail_id( $entry_id );
+	$html     = sprintf( '<li class="mai-guide%s">', $current );
 		$html .= sprintf( '<a class="mai-guide__link" href="%s">', get_permalink( $entry_id ) );
-			$html .= '<span class="row gutter-xs middle-xs">';
-				$html .= sprintf( '<span class="mai-guide__count col col-xs-auto">%s</span>', $count );
-				$html .= sprintf( '<span class="mai-guide__image col col-xs-auto">%s</span>', wp_get_attachment_image( get_post_thumbnail_id( $entry_id ), $atts['image_size'], false, array( 'class' => 'mai-guide__img' ) ) );
-				$html .= sprintf( '<span class="mai-guide__title col col-xs"><%s class="bottom-xs-none">%s</%s></span>', $atts['title_wrap'], get_the_title( $entry_id ), $atts['title_wrap'] );
-			$html .= '</span>';
+			$html .= sprintf( '<span class="mai-guide__count">%s</span>', $count );
+			$html .= $image_id ? sprintf( '<span class="mai-guide__image">%s</span>', wp_get_attachment_image( $image_id, $atts['image_size'], false, array( 'class' => 'mai-guide__img' ) ) ) : '';
+			$html .= sprintf( '<span class="mai-guide__title"><%s>%s</%s></span>', $atts['title_wrap'], get_the_title( $entry_id ), $atts['title_wrap'] );
 		$html .= '</a>';
 	$html .= '</li>';
 	return $html;
@@ -230,16 +232,22 @@ function maiguides_get_processed_content( $content ) {
 	if ( function_exists( 'mai_get_processed_content' ) ) {
 		return mai_get_processed_content( $content );
 	} else {
+		/**
+		 * Embed.
+		 *
+		 * @var WP_Embed $wp_embed Embed object.
+		 */
 		global $wp_embed;
-		$content = $wp_embed->autoembed( $content );              // WP runs priority 8.
-		$content = $wp_embed->run_shortcode( $content );          // WP runs priority 8.
-		$content = wptexturize( $content );                       // WP runs priority 10.
-		$content = wpautop( $content );                           // WP runs priority 10.
-		$content = mai_content_filter_shortcodes( $content );     // after wpautop, before shortcodes are parsed.
-		$content = shortcode_unautop( $content );                 // WP runs priority 10.
-		$content = wp_make_content_images_responsive( $content ); // WP runs priority 10.
-		$content = do_shortcode( $content );                      // WP runs priority 11.
-		$content = convert_smilies( $content );                   // WP runs priority 20.
+
+		$content = $wp_embed->autoembed( $content );     // WP runs priority 8.
+		$content = $wp_embed->run_shortcode( $content ); // WP runs priority 8.
+		$content = do_blocks( $content );                // WP runs priority 9.
+		$content = wptexturize( $content );              // WP runs priority 10.
+		$content = wpautop( $content );                  // WP runs priority 10.
+		$content = shortcode_unautop( $content );        // WP runs priority 10.
+		$content = function_exists( 'wp_filter_content_tags' ) ? wp_filter_content_tags( $content ) : wp_make_content_images_responsive( $content ); // WP runs priority 10. WP 5.5 with fallback.
+		$content = do_shortcode( $content );             // WP runs priority 11.
+		$content = convert_smilies( $content );          // WP runs priority 20.
 	}
 	return $content;
 }
