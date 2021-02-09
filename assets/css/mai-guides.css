@@ -95,6 +95,7 @@
 }
 
 .mai-guide__title > * {
+	margin: 0;
 	color: var(--guide-title-color, var(--color-body, inherit));
 	font-size: 1em;
 }

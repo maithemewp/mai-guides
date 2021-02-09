@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.7.1 (1/9/21)
+* Fixed: Guide title margin in guide list.
+
 ## 0.7.0 (1/9/21)
 * Added: Support for Mai Theme v2.
 * Changed: Updated the updater.
