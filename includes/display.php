@@ -64,7 +64,7 @@ function maiguides_do_after_content() {
  * @since   0.3.0
  * @return  void
  */
-add_action( 'genesis_entry_content', 'maiguides_do_before_guide_content', 8 );
+add_action( 'genesis_before_entry_content', 'maiguides_do_before_guide_content' );
 function maiguides_do_before_guide_content() {
 
 	// Get the guide ID.
@@ -90,7 +90,7 @@ function maiguides_do_before_guide_content() {
  * @since   0.3.0
  * @return  void
  */
-add_action( 'genesis_entry_content', 'maiguides_do_after_guide_content', 12 );
+add_action( 'genesis_after_entry_content', 'maiguides_do_after_guide_content' );
 function maiguides_do_after_guide_content() {
 
 	// Get the guide ID.
