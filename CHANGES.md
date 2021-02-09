@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.7.0 (1/9/21)
+* Added: Support for Mai Theme v2.
+* Changed: Updated the updater.
+
 ## 0.6.2 (11/12/19)
 * Added: Guides now support Gutenberg.
 
