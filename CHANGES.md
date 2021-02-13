@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.7.2 (2/13/21)
+* Added: Mai logo icon to updater.
+
 ## 0.7.1 (1/9/21)
 * Fixed: Guide title margin in guide list.
 

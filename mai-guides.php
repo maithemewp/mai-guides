@@ -4,7 +4,7 @@
  * Plugin Name:     Mai Guides
  * Plugin URI:      https://maitheme.com
  * Description:     Create SEO friendly guide posts that feature an ordered list of hand-picked posts. Requires ACF to choose posts for your guides.
- * Version:         0.7.1
+ * Version:         0.7.2
  *
  * Author:          BizBudding, Mike Hemberger
  * Author URI:      https://bizbudding.com
@@ -90,7 +90,7 @@ final class Mai_Guides {
 
 		// Plugin version.
 		if ( ! defined( 'MAI_GUIDES_VERSION' ) ) {
-			define( 'MAI_GUIDES_VERSION', '0.7.1' );
+			define( 'MAI_GUIDES_VERSION', '0.7.2' );
 		}
 
 		// Plugin Folder Path.
@@ -179,6 +179,16 @@ final class Mai_Guides {
 		// Maybe set github api token.
 		if ( defined( 'MAI_GITHUB_API_TOKEN' ) ) {
 			$updater->setAuthentication( MAI_GITHUB_API_TOKEN );
+		}
+
+		// Add icons for Dashboard > Updates screen.
+		if ( function_exists( 'mai_get_updater_icons' ) && $icons = mai_get_updater_icons() ) {
+			$updater->addResultFilter(
+				function ( $info ) use ( $icons ) {
+					$info->icons = $icons;
+					return $info;
+				}
+			);
 		}
 	}
 
