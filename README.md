@@ -54,20 +54,20 @@ title_wrap
 ```
 **Example**
 ```
-[guide_toc title_wrap="h2"]
+[guide_toc title_wrap="h3"]
 ```
 Change the main title wrapping element.
-Default: h3
+Default: h2
 
 ```
 entry_wrap
 ```
 **Example**
 ```
-[guide_toc entry_wrap="h3"]
+[guide_toc entry_wrap="h4"]
 ```
 Change the entry title wrapping element.
-Default: h4
+Default: h3
 
 ```
 class
