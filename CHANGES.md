@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.7.3 (7/14/21)
+* Fixed: Guide TOC entry titles not using entry_wrap shortcode attribute.
+* Changed: Guide TOC title is now h2 and entry titles are h3.
+
 ## 0.7.2 (2/13/21)
 * Added: Mai logo icon to updater.
 
