@@ -14,8 +14,8 @@ function maiguides_get_table_of_contents( $atts ) {
 		'id'         => '',
 		'class'      => '',
 		'title'      => '',
-		'title_wrap' => 'h3',
-		'entry_wrap' => 'h4',
+		'title_wrap' => 'h2',
+		'entry_wrap' => 'h3',
 		'image_size' => 'tiny',
 	), $atts, 'guide_toc' );
 
@@ -205,7 +205,7 @@ function maiguides_get_guide_list_item( $entry_id, $count = '', $atts ) {
 		$html .= sprintf( '<a class="mai-guide__link" href="%s">', get_permalink( $entry_id ) );
 			$html .= sprintf( '<span class="mai-guide__count">%s</span>', $count );
 			$html .= $image_id ? sprintf( '<span class="mai-guide__image">%s</span>', wp_get_attachment_image( $image_id, $atts['image_size'], false, array( 'class' => 'mai-guide__img' ) ) ) : '';
-			$html .= sprintf( '<span class="mai-guide__title"><%s>%s</%s></span>', $atts['title_wrap'], get_the_title( $entry_id ), $atts['title_wrap'] );
+			$html .= sprintf( '<span class="mai-guide__title"><%s>%s</%s></span>', $atts['entry_wrap'], get_the_title( $entry_id ), $atts['entry_wrap'] );
 		$html .= '</a>';
 	$html .= '</li>';
 	return $html;
