@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.7.4 (11/27/23)
+* Changed: Updated the updater.
+
 ## 0.7.3 (7/14/21)
 * Fixed: Guide TOC entry titles not using entry_wrap shortcode attribute.
 * Changed: Guide TOC title is now h2 and entry titles are h3.
